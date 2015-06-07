@@ -5,7 +5,7 @@ Sys.setlocale(category = "LC_TIME", locale = "en_US.utf8")
 rawData <- read.csv(file = "household_power_consumption.txt", sep = ";", na.strings = "?", as.is = c(1, 2))
 data <- filter(rawData, grepl("^([1|2]/2/2007)", Date) & !is.na(Global_active_power))
 data <- mutate(data, dateTime = dmy_hms(paste(Date, Time, sep = ";")))
-plot(x = data$dateTime, y = data$Global_active_power,
+plot(x = range(data$dateTime), y = range(data$Global_active_power),
      type = "n",
      xlab = "",
      ylab = "Global Active Power (kilowatts)",
